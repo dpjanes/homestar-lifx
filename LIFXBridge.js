@@ -92,7 +92,7 @@ LIFXBridge.prototype.discover = function() {
  *  INSTANCE
  *  This is called when the Bridge is no longer needed. When
  */
-LIFXBridge.prototype.connect = function() {
+LIFXBridge.prototype.connect = function(connectd) {
     var self = this;
     if (!self.native) {
         return;
