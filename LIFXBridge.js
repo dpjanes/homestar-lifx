@@ -47,10 +47,10 @@ var __queue;
  *  <li><code>disconnnected</code> - this has been disconnected from a Thing
  *  </ul>
  */
-var LIFXBridge = function(paramd, native) {
+var LIFXBridge = function(initd, native) {
     var self = this;
 
-    self.paramd = _.defaults(paramd, {
+    self.initd = _.defaults(initd, {
         number: 0,
         poll: 30,
         account: null,
@@ -84,7 +84,7 @@ LIFXBridge.prototype.discover = function() {
 
     var lx = self._lifx();
     lx.on('bulb', function (bulb) {
-        self.discovered(new LIFXDriver(self.paramd, bulb));
+        self.discovered(new LIFXDriver(self.initd, bulb));
     });
 };
 
@@ -104,7 +104,7 @@ LIFXBridge.prototype.connect = function() {
 
 LIFXBridge.prototype._setup_polling = function() {
     var self = this;
-    if (!self.paramd.poll) {
+    if (!self.initd.poll) {
         return;
     }
 
@@ -115,7 +115,7 @@ LIFXBridge.prototype._setup_polling = function() {
         }
 
         self.pull();
-    }, self.paramd.poll * 1000);
+    }, self.initd.poll * 1000);
 };
 
 LIFXBridge.prototype._forget = function() {
@@ -237,7 +237,7 @@ LIFXBridge.prototype.meta = function() {
     }
 
     return {
-        "iot:thing": _.id.thing_urn.unique("LIFX", self.native.uuid) + "/" + self.paramd.number,
+        "iot:thing": _.id.thing_urn.unique("LIFX", self.native.uuid) + "/" + self.initd.number,
         "iot:device": _.id.thing_urn.unique("LIFX", self.native.uuid),
         "iot:name": self.native.name || "LIFX",
         "schema:manufacturer": "schema:manufacturer",
