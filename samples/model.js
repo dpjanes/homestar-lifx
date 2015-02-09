@@ -4,14 +4,10 @@
 
 var iotdb = require("iotdb");
 
-var LIFXBridge = require('../LIFXBridge').Bridge;
-var LIFXModel = require('../LIFXModel').Model;
+var LIFX = require('../LIFX');
 
-wrapper = iotdb.bridge_wrapper(new LIFXBridge());
-wrapper.on('discovered', function(bridge) {
-    var model = new LIFXModel();
-    model.bind_bridge(bridge);
-
+wrapper = iotdb.bridge_wrapper(LIFX.binding);
+wrapper.on('model', function(model) {
     model.on_change(function(model) {
         console.log("+ state\n ", model.state());
     });

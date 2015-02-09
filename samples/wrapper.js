@@ -6,10 +6,10 @@ var iotdb = require("iotdb");
 
 var LIFXBridge = require('../LIFXBridge').Bridge;
 
-wrapper = iotdb.bridge_wrapper(new LIFXBridge({
-    mdns: true
-}));
-wrapper.on('discovered', function(bridge) {
+var LIFX = require('../LIFX');
+
+wrapper = iotdb.bridge_wrapper(LIFX.binding);
+wrapper.on('bridge', function(bridge) {
     console.log("+ discovered\n ", bridge.meta());
 
     var on = false;

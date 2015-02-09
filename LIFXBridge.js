@@ -82,9 +82,13 @@ var LIFXBridge = function(initd, native) {
 LIFXBridge.prototype.discover = function() {
     var self = this;
 
+    logger.info({
+        method: "discover"
+    }, "called");
+
     var lx = self._lifx();
     lx.on('bulb', function (bulb) {
-        self.discovered(new LIFXDriver(self.initd, bulb));
+        self.discovered(new LIFXBridge(self.initd, bulb));
     });
 };
 
@@ -278,7 +282,7 @@ var __lifx;
 
 /**
  */
-LIFXDriver.prototype._lifx = function () {
+LIFXBridge.prototype._lifx = function () {
     var self = this;
 
     if (!__lifx) {

@@ -1,5 +1,5 @@
 /*
- *  LIFXLight.js
+ *  LIFX.js
  *
  *  David Janes
  *  IOTDB
@@ -13,6 +13,11 @@ exports.Model = iotdb.make_model('LIFXLight')
     .name("LIFX Light")
     .description("LIFX colored light")
     .o("on", iotdb.boolean.on)
-    .o("color", iotdb.boolean.color)
+    .o("color", iotdb.color)
     .make()
     ;
+
+exports.binding = {
+    bridge: require('./LIFXBridge').Bridge,
+    model: exports.Model,
+};
