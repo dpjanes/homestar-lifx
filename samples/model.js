@@ -2,17 +2,18 @@
  *  Use a Model to manipulate semantically
  */
 
-var iotdb = require("iotdb");
+var homestar = require("homestar");
+var _ = homestar._;
 
-var LIFX = require('../LIFX');
+var ModelBinding = require('../LIFX');
 
-wrapper = iotdb.bridge_wrapper(LIFX.binding);
+wrapper = _.bridge_wrapper(ModelBinding.binding);
 wrapper.on('model', function(model) {
     model.on_change(function(model) {
         console.log("+ state\n ", model.state());
     });
     model.on_meta(function(model) {
-        console.log("+ meta\n ", model.meta().state());
+        console.log("+ meta\n ", _.ld.compact(model.meta().state()));
     });
 
     var count = 0;
@@ -27,5 +28,5 @@ wrapper.on('model', function(model) {
         model.set(":color", colors[count++ % colors.length]);
     }, 2500);
     
-    console.log("+ discovered\n ", model.meta().state(), "\n ", model.thing_id());
+    console.log("+ discovered\n ", _.ld.compact(model.meta().state()), "\n ", model.thing_id());
 })

@@ -2,7 +2,7 @@
  *  Connect to a Hue
  */
 
-var iotdb = require('iotdb');
+var homestar = require('homestar');
 var LIFXBridge = require('../LIFXBridge').Bridge;
 
 var bridge_exemplar = new LIFXBridge();
