@@ -22,8 +22,8 @@
 
 "use strict";
 
-var iotdb = require('iotdb')
-var _ = iotdb.helpers;
+var homestar = require('homestar')
+var _ = homestar._;
 
 var lifx = require('lifx');
 
@@ -32,8 +32,6 @@ var logger = bunyan.createLogger({
     name: 'homestar-lifx',
     module: 'LIFXBridge',
 });
-
-var __queue;
 
 /**
  *  EXEMPLAR and INSTANCE
@@ -59,12 +57,7 @@ var LIFXBridge = function(initd, native) {
     self.stated = {};
 
     if (self.native) {
-        /* queue is shared amongst all LIFX */
-        if (!__queue) {
-            __queue = new iotdb.Queue("LIFXBridge");
-        }
-
-        self.queue = __queue;
+        self.queue = _.queue("LIFXBridge");
     }
 };
 
@@ -166,7 +159,7 @@ LIFXBridge.prototype.push = function(pushd) {
     }
 
     if (pushd.brightness !== undefined) {
-        var color = new iotdb.libs.Color();
+        var color = new _.Color();
         color.set_rgb_1(pushd.brightness, pushd.brightness, pushd.brightness);
         pushd.color = color.get_hex();
     }
@@ -293,7 +286,7 @@ LIFXBridge.prototype._lifx = function () {
 };
 
 function _c2h(outd, hex) {
-    var color = new iotdb.libs.Color(hex);
+    var color = new _.Color(hex);
 
     outd.h = Math.round(color.h * 0xFFFF);
     outd.s = Math.round(color.s * 0xFFFF);

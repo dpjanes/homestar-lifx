@@ -6,14 +6,14 @@
  *  2014-11-24
  */
 
-var iotdb = require("iotdb")
+var homestar = require("homestar")
 
-exports.Model = iotdb.make_model('LIFXLight')
+exports.Model = homestar.make_model('LIFXLight')
     .facet(":lighting")
     .name("LIFX Light")
     .description("LIFX colored light")
-    .o("on", iotdb.boolean.on)
-    .o("color", iotdb.color)
+    .o("on", homestar.boolean.on)
+    .o("color", homestar.color)
     .make()
     ;
 
