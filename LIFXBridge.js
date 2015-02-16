@@ -154,6 +154,7 @@ LIFXBridge.prototype.push = function(pushd) {
         return;
     }
 
+    var putd = {};
     if (pushd.on !== undefined) {
         putd.on = pushd.on;
     }
