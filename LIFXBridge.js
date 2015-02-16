@@ -194,10 +194,10 @@ LIFXBridge.prototype.push = function(pushd) {
                 _lifx.lightsColour(putd.h, putd.s, putd.l, putd.brightness, 0x25, self.native); 
             }
 
-            queue.finished(qitem);
+            self.queue.finished(qitem);
         }
     };
-    queue.add(qitem);
+    self.queue.add(qitem);
 };
 
 /**
