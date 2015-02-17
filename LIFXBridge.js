@@ -191,7 +191,7 @@ LIFXBridge.prototype.push = function(pushd) {
             }
 
             if (putd.h !== undefined) {
-                _lifx.lightsColour(putd.h, putd.s, putd.l, putd.brightness, 0x25, self.native); 
+                lx.lightsColour(putd.h, putd.s, putd.l, putd.brightness, 0x25, self.native); 
             }
 
             self.queue.finished(qitem);
