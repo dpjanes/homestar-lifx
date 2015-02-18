@@ -13,7 +13,7 @@ exports.Model = homestar.make_model('LIFXLight')
     .name("LIFX Light")
     .description("LIFX colored light")
     .o("on", homestar.boolean.on)
-    .o("color", homestar.color)
+    .o("color", homestar.string.color)
     .make()
     ;
 
