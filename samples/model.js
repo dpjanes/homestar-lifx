@@ -9,10 +9,10 @@ var ModelBinding = require('../LIFX');
 
 wrapper = _.bridge_wrapper(ModelBinding.binding);
 wrapper.on('model', function(model) {
-    model.on_change(function(model) {
+    model.on("state", function(model) {
         console.log("+ state\n ", model.state());
     });
-    model.on_meta(function(model) {
+    model.on("meta", function(model) {
         console.log("+ meta\n ", _.ld.compact(model.meta().state()));
     });
 
