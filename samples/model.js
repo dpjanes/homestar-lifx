@@ -8,7 +8,7 @@ var _ = homestar._;
 var ModelBinding = require('../LIFX');
 
 wrapper = _.bridge_wrapper(ModelBinding.binding);
-wrapper.on('model', function(model) {
+wrapper.on('thing', function(model) {
     model.on("state", function(model) {
         console.log("+ state\n ", model.state());
     });
