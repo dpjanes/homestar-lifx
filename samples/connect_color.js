@@ -2,7 +2,7 @@
  *  Connect to a Hue and cycle through colors
  */
 
-var homestar = require('homestar');
+var iotdb = require('iotdb');
 var LIFXBridge = require('../LIFXBridge').Bridge;
 
 var bridge_exemplar = new LIFXBridge();

@@ -23,7 +23,11 @@
 "use strict";
 
 exports.Bridge = require('./LIFXBridge').Bridge;
-
 exports.bindings = [
     require('./LIFX').binding,
 ];
+
+exports.iotdb = require("iotdb");
+exports.wrap = function(name, initd) {
+    return exports.iotdb.make_wrap(name, exports.bindings, initd)
+};

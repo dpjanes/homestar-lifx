@@ -1,6 +1,10 @@
 # homestar-lifx
 HomeStar / IOTDB Controller for LIFX Light
 
+See <a href="samples/">the samples</a> for details how to add to your project,
+particularly <code>model.js</code> for standalone
+and <code>iotdb.js</code> for HomeStar/IOTDB.
+
 # Quick Start
 
 Set the light color to red
@@ -11,17 +15,21 @@ Set the light color to red
 	$ node
 	>>> iotdb = require('iotdb')
 	>>> iot = iotdb.iot()
-	>>> things = iot.connect("LIFX")
+	>>> things = iot.connect("LIFXLight")
 	>>> things.set(":color", "#FF0000")
 
 # LIFXLight
 
-* discover LIFX hubs and individual lights
+Control LIFX Light
+
+Functionality:
+
+* discover Light hubs and individual lights
 * turn lights on and off
 * set light color
 * get same
 
-## LIFXLightModel
+## Attributes
 
 * <code>on</code>: true or false.  <code>iot-attribute:on</code>
 * <code>color</code>: a hex color ("#FF0000").  <code>iot-attribute:color</code>
@@ -32,5 +40,4 @@ e.g.
         "on": true,
         "color": "#FF0000"
     }
-
 
