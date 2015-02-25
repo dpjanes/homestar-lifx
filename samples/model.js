@@ -2,8 +2,8 @@
  *  Use a Model to manipulate semantically
  */
 
-var homestar = require("homestar");
-var _ = homestar._;
+var iotdb = require("iotdb");
+var _ = iotdb._;
 
 var ModelBinding = require('../LIFX');
 
