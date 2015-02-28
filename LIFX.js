@@ -6,7 +6,7 @@
  *  2014-11-24
  */
 
-var iotdb = require("iotdb")
+var iotdb = require("iotdb");
 
 exports.Model = iotdb.make_model('LIFXLight')
     .facet(":lighting")
@@ -14,8 +14,7 @@ exports.Model = iotdb.make_model('LIFXLight')
     .description("LIFX colored light")
     .o("on", iotdb.boolean.on)
     .o("color", iotdb.string.color)
-    .make()
-    ;
+    .make();
 
 exports.binding = {
     bridge: require('./LIFXBridge').Bridge,

@@ -22,12 +22,14 @@
 
 "use strict";
 
+exports.iotdb_module = true;
+
 exports.Bridge = require('./LIFXBridge').Bridge;
 exports.bindings = [
     require('./LIFX').binding,
 ];
 
 exports.iotdb = require("iotdb");
-exports.wrap = function(name, initd) {
-    return exports.iotdb.make_wrap(name, exports.bindings, initd)
+exports.wrap = function (name, initd) {
+    return exports.iotdb.make_wrap(name, exports.bindings, initd);
 };

@@ -9,7 +9,7 @@ and <code>iotdb.js</code> for HomeStar/IOTDB.
 
 Set the light color to red
 
-	$ npm install -g homestar
+	$ npm install -g homestar ## with 'sudo' if error
 	$ npm install iotdb
 	$ homestar install homestar-lifx
 	$ node

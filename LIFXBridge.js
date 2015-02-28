@@ -22,7 +22,7 @@
 
 "use strict";
 
-var iotdb = require('iotdb')
+var iotdb = require('iotdb');
 var _ = iotdb._;
 var bunyan = iotdb.bunyan;
 
@@ -36,7 +36,7 @@ var logger = bunyan.createLogger({
 /**
  *  EXEMPLAR and INSTANCE
  *  <p>
- *  No subclassing needed! The following functions are 
+ *  No subclassing needed! The following functions are
  *  injected _after_ this is created, and before .discover and .connect
  *  <ul>
  *  <li><code>discovered</code> - tell IOTDB that we're talking to a new Thing
@@ -45,14 +45,15 @@ var logger = bunyan.createLogger({
  *  <li><code>disconnnected</code> - this has been disconnected from a Thing
  *  </ul>
  */
-var LIFXBridge = function(initd, native) {
+var LIFXBridge = function (initd, native) {
     var self = this;
 
-    self.initd = _.defaults(initd, {
-        number: 0,
-        poll: 30,
-        account: null,
-    });
+    self.initd = _.defaults(initd,
+        iotdb.keystore().get("bridges/LIFXBridge/initd"), {
+            number: 0,
+            poll: 30
+        }
+    );
     self.native = native;
     self.stated = {};
 
@@ -64,7 +65,7 @@ var LIFXBridge = function(initd, native) {
 /* --- lifecycle --- */
 
 /**
- *  EXEMPLAR. 
+ *  EXEMPLAR.
  *  Discover Hue
  *  <ul>
  *  <li>look for Things (using <code>self.bridge</code> data to initialize)
@@ -72,7 +73,7 @@ var LIFXBridge = function(initd, native) {
  *  <li>create an LIFXBridge(native)
  *  <li>call <code>self.discovered(bridge)</code> with it
  */
-LIFXBridge.prototype.discover = function() {
+LIFXBridge.prototype.discover = function () {
     var self = this;
 
     logger.info({
@@ -89,7 +90,7 @@ LIFXBridge.prototype.discover = function() {
  *  INSTANCE
  *  This is called when the Bridge is no longer needed. When
  */
-LIFXBridge.prototype.connect = function(connectd) {
+LIFXBridge.prototype.connect = function (connectd) {
     var self = this;
     if (!self.native) {
         return;
@@ -99,13 +100,13 @@ LIFXBridge.prototype.connect = function(connectd) {
     self.pull();
 };
 
-LIFXBridge.prototype._setup_polling = function() {
+LIFXBridge.prototype._setup_polling = function () {
     var self = this;
     if (!self.initd.poll) {
         return;
     }
 
-    var timer = setInterval(function() {
+    var timer = setInterval(function () {
         if (!self.native) {
             clearInterval(timer);
             return;
@@ -115,7 +116,7 @@ LIFXBridge.prototype._setup_polling = function() {
     }, self.initd.poll * 1000);
 };
 
-LIFXBridge.prototype._forget = function() {
+LIFXBridge.prototype._forget = function () {
     var self = this;
     if (!self.native) {
         return;
@@ -127,13 +128,13 @@ LIFXBridge.prototype._forget = function() {
 
     self.native = null;
     self.pulled();
-}
+};
 
 /**
- *  INSTANCE and EXEMPLAR (during shutdown). 
- *  This is called when the Bridge is no longer needed. 
+ *  INSTANCE and EXEMPLAR (during shutdown).
+ *  This is called when the Bridge is no longer needed.
  */
-LIFXBridge.prototype.disconnect = function() {
+LIFXBridge.prototype.disconnect = function () {
     var self = this;
     if (!self.native || !self.native) {
         return;
@@ -148,7 +149,7 @@ LIFXBridge.prototype.disconnect = function() {
  *  INSTANCE.
  *  Send data to whatever you're taking to.
  */
-LIFXBridge.prototype.push = function(pushd) {
+LIFXBridge.prototype.push = function (pushd) {
     var self = this;
     if (!self.native) {
         return;
@@ -191,7 +192,7 @@ LIFXBridge.prototype.push = function(pushd) {
             }
 
             if (putd.h !== undefined) {
-                lx.lightsColour(putd.h, putd.s, putd.l, putd.brightness, 0x25, self.native); 
+                lx.lightsColour(putd.h, putd.s, putd.l, putd.brightness, 0x25, self.native);
             }
 
             self.queue.finished(qitem);
@@ -205,7 +206,7 @@ LIFXBridge.prototype.push = function(pushd) {
  *  Pull data from whatever we're talking to. You don't
  *  have to implement this if it doesn't make sense
  */
-LIFXBridge.prototype.pull = function() {
+LIFXBridge.prototype.pull = function () {
     var self = this;
     if (!self.native) {
         return;
@@ -228,7 +229,7 @@ LIFXBridge.prototype.pull = function() {
  *  <li><code>schema:manufacturer</code>
  *  <li><code>schema:model</code>
  */
-LIFXBridge.prototype.meta = function() {
+LIFXBridge.prototype.meta = function () {
     var self = this;
     if (!self.native) {
         return;
@@ -244,29 +245,28 @@ LIFXBridge.prototype.meta = function() {
 
 /**
  *  INSTANCE.
- *  Return True if this is reachable. You 
+ *  Return True if this is reachable. You
  *  do not need to worry about connect / disconnect /
  *  shutdown states, they will be always checked first.
  */
-LIFXBridge.prototype.reachable = function() {
+LIFXBridge.prototype.reachable = function () {
     return this.native !== null;
 };
 
 /**
  *  INSTANCE.
  *  Configure an express web page to configure this Bridge.
- *  Return the name of the Bridge, which may be 
+ *  Return the name of the Bridge, which may be
  *  listed and displayed to the user.
  */
-LIFXBridge.prototype.configure = function(app) {
-};
+LIFXBridge.prototype.configure = function (app) {};
 
 /* --- injected: THIS CODE WILL BE REMOVED AT RUNTIME, DO NOT MODIFY  --- */
-LIFXBridge.prototype.discovered = function(bridge) {
+LIFXBridge.prototype.discovered = function (bridge) {
     throw new Error("LIFXBridge.discovered not implemented");
 };
 
-LIFXBridge.prototype.pulled = function(pulld) {
+LIFXBridge.prototype.pulled = function (pulld) {
     throw new Error("LIFXBridge.pulled not implemented");
 };
 
@@ -286,15 +286,14 @@ LIFXBridge.prototype._lifx = function () {
 };
 
 function _c2h(outd, hex) {
-    var color = new _.Color(hex);
+        var color = new _.Color(hex);
 
-    outd.h = Math.round(color.h * 0xFFFF);
-    outd.s = Math.round(color.s * 0xFFFF);
-    outd.l = Math.round(color.l * 0xFFFF);
-    outd.brightness = Math.max(color.r, color.g, color.b) * 0xFFFF;
-}
-/*
- *  API
- */
+        outd.h = Math.round(color.h * 0xFFFF);
+        outd.s = Math.round(color.s * 0xFFFF);
+        outd.l = Math.round(color.l * 0xFFFF);
+        outd.brightness = Math.max(color.r, color.g, color.b) * 0xFFFF;
+    }
+    /*
+     *  API
+     */
 exports.Bridge = LIFXBridge;
-
