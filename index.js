@@ -22,8 +22,6 @@
 
 "use strict";
 
-exports.iotdb_module = true;
-
 exports.Bridge = require('./LIFXBridge').Bridge;
 exports.bindings = [
     require('./LIFX').binding,
