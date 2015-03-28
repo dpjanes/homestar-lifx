@@ -4,7 +4,7 @@
         "url": "https://github.com/dpjanes/homestar-lifx/issues"
     }, 
     "dependencies": {
-        "lifx": "~0.2.1"
+        "lifx": "~0.3.1"
     }, 
     "description": "HomeStar / IOTDB Bridge for LIFX", 
     "devDependencies": {
@@ -24,7 +24,7 @@
     "main": "index.js", 
     "name": "homestar-lifx", 
     "peerDependencies": {
-        "iotdb": ">=0.5.3"
+        "iotdb": ">=0.5.5"
     }, 
     "private": false, 
     "repository": {
