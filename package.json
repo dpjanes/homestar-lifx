@@ -24,7 +24,7 @@
     "main": "index.js", 
     "name": "homestar-lifx", 
     "peerDependencies": {
-        "iotdb": ">=0.5.5"
+        "iotdb": ">=0.5.12"
     }, 
     "private": false, 
     "repository": {
