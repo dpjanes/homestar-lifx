@@ -166,7 +166,7 @@ LIFXBridge.prototype.push = function (pushd) {
         pushd.color = color.get_hex();
     }
 
-    if (_.isString(pushd.color)) {
+    if (_.is.String(pushd.color)) {
         _c2h(putd, pushd.color);
 
         putd.on = true;
