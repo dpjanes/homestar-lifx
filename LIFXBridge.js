@@ -233,15 +233,6 @@ LIFXBridge.prototype.reachable = function () {
  */
 LIFXBridge.prototype.configure = function (app) {};
 
-/* --- injected: THIS CODE WILL BE REMOVED AT RUNTIME, DO NOT MODIFY  --- */
-LIFXBridge.prototype.discovered = function (bridge) {
-    throw new Error("LIFXBridge.discovered not implemented");
-};
-
-LIFXBridge.prototype.pulled = function (pulld) {
-    throw new Error("LIFXBridge.pulled not implemented");
-};
-
 /* -- internals -- */
 var __lifx;
 
