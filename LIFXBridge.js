@@ -148,6 +148,8 @@ LIFXBridge.prototype.push = function (pushd) {
         return;
     }
 
+    self._validate_push(pushd);
+
     var putd = {};
     if (pushd.on !== undefined) {
         putd.on = pushd.on;
