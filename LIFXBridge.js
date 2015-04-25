@@ -65,7 +65,7 @@ LIFXBridge.prototype.name = function () {
 /* --- lifecycle --- */
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#discover} for documentation.
  */
 LIFXBridge.prototype.discover = function () {
     var self = this;
@@ -81,7 +81,7 @@ LIFXBridge.prototype.discover = function () {
 };
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#connect} for documentation.
  */
 LIFXBridge.prototype.connect = function (connectd) {
     var self = this;
@@ -126,7 +126,7 @@ LIFXBridge.prototype._forget = function () {
 };
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#disconnect} for documentation.
  */
 LIFXBridge.prototype.disconnect = function () {
     var self = this;
@@ -140,7 +140,7 @@ LIFXBridge.prototype.disconnect = function () {
 /* --- data --- */
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#push} for documentation.
  */
 LIFXBridge.prototype.push = function (pushd) {
     var self = this;
@@ -197,7 +197,7 @@ LIFXBridge.prototype.push = function (pushd) {
 };
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#pull} for documentation.
  */
 LIFXBridge.prototype.pull = function () {
     var self = this;
@@ -209,7 +209,7 @@ LIFXBridge.prototype.pull = function () {
 /* --- state --- */
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#meta} for documentation.
  */
 LIFXBridge.prototype.meta = function () {
     var self = this;
@@ -226,14 +226,14 @@ LIFXBridge.prototype.meta = function () {
 };
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#reachable} for documentation.
  */
 LIFXBridge.prototype.reachable = function () {
     return this.native !== null;
 };
 
 /**
- *  See {iotdb.bridge.Bridge#XXX} for documentation.
+ *  See {iotdb.bridge.Bridge#configure} for documentation.
  */
 LIFXBridge.prototype.configure = function (app) {};
 
