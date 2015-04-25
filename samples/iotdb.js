@@ -4,13 +4,15 @@
  *  Note: to work, this package must have been installed by 'homestar install' 
  */
 
-var iotdb = require('iotdb')
+"use strict";
+
+var iotdb = require('iotdb');
 var iot = iotdb.iot();
 
 var things = iot.connect('LIFX');
 
 var on = false;
-var timer = setInterval(function() {
+var timer = setInterval(function () {
     things.set(":on", on);
     on = !on;
 }, 2500);

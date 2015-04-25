@@ -17,6 +17,6 @@ exports.Model = iotdb.make_model('LIFXLight')
     .make();
 
 exports.binding = {
-    bridge: require('./LIFXBridge').Bridge,
+    bridge: require('../LIFXBridge').Bridge,
     model: exports.Model,
 };

@@ -24,7 +24,7 @@
 
 exports.Bridge = require('./LIFXBridge').Bridge;
 exports.bindings = [
-    require('./LIFX').binding,
+    require('./models/LIFX').binding,
 ];
 
 exports.iotdb = require("iotdb");
