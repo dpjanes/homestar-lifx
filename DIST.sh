@@ -27,11 +27,14 @@ echo "=================="
     fi
     mkdir "${NPM_DST}" || exit 1
 
-    update-package --package "$PACKAGE" --homestar || exit 1
+    update-package --increment-version --package "$PACKAGE" --homestar || exit 1
 
     tar cf - \
-        README.md LICENSE homestar.json package.json \
-        *.js \
+        --exclude "node_modules" \
+        README.md LICENSE \
+        homestar.json package.json \
+        LIFXBridge.js index.js \
+        models/*.js \
         |
     ( cd "${NPM_DST}" && tar xvf - )
 
