@@ -14,7 +14,7 @@ See: https://github.com/dpjanes/iotdb-homestar#installation
 
 Then
 
-    $ homestar install homestar-template
+    $ homestar install homestar-lifx
 
 # Quick Start
 
