@@ -145,7 +145,7 @@ LIFXBridge.prototype.disconnect = function () {
 LIFXBridge.prototype.push = function (pushd, done) {
     var self = this;
     if (!self.native) {
-        done(new Error("not connected", pushd));
+        done(new Error("not connected"));
         return;
     }
 
@@ -192,9 +192,10 @@ LIFXBridge.prototype.push = function (pushd, done) {
             }
 
             self.queue.finished(qitem);
-
+        },
+        coda: function() {
             done();
-        }
+        },
     };
     self.queue.add(qitem);
 };
