@@ -142,9 +142,10 @@ LIFXBridge.prototype.disconnect = function () {
 /**
  *  See {iotdb.bridge.Bridge#push} for documentation.
  */
-LIFXBridge.prototype.push = function (pushd) {
+LIFXBridge.prototype.push = function (pushd, done) {
     var self = this;
     if (!self.native) {
+        done(new Error("not connected", pushd));
         return;
     }
 
@@ -191,6 +192,8 @@ LIFXBridge.prototype.push = function (pushd) {
             }
 
             self.queue.finished(qitem);
+
+            done();
         }
     };
     self.queue.add(qitem);
