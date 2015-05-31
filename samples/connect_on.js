@@ -19,7 +19,7 @@ bridge_exemplar.discovered = function (bridge) {
     setInterval(function () {
         bridge.push({
             on: on,
-        });
+        }, function() {});
         on = !on;
     }, 2500);
 };

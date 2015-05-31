@@ -20,7 +20,7 @@ bridge_exemplar.discovered = function (bridge) {
     setInterval(function () {
         bridge.push({
             color: colors[count++ % colors.length]
-        });
+        }, function() {});
     }, 2500);
 };
 bridge_exemplar.discover();
