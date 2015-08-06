@@ -222,8 +222,8 @@ LIFXBridge.prototype.meta = function () {
     }
 
     return {
-        "iot:thing": _.id.thing_urn.unique("LIFX", self.native.uuid, self.initd.number),
-        "iot:device": _.id.thing_urn.unique("LIFX", self.native.uuid),
+        "iot:thing-id": _.id.thing_urn.unique("LIFX", self.native.uuid, self.initd.number),
+        "iot:device-id": _.id.thing_urn.unique("LIFX", self.native.uuid),
         "schema:name": self.native.name || "LIFX",
         "schema:manufacturer": "schema:manufacturer",
     };
