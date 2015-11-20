@@ -53,6 +53,11 @@ var LIFXBridge = function (initd, native) {
 
     if (self.native) {
         self.queue = _.queue("LIFXBridge");
+
+        if (!self.native.uuid && self.native.addr) {
+            self.native.uuid = self.native.addr.toString("hex");
+        }
+
     }
 };
 
@@ -222,10 +227,9 @@ LIFXBridge.prototype.meta = function () {
     }
 
     return {
-        "iot:thing-id": _.id.thing_urn.unique("LIFX", self.native.uuid, self.initd.number),
-        "iot:device-id": _.id.thing_urn.unique("LIFX", self.native.uuid),
+        "iot:thing-id": _.id.thing_urn.unique("LIFX", self.native.uuid),
         "schema:name": self.native.name || "LIFX",
-        "schema:manufacturer": "schema:manufacturer",
+        "schema:manufacturer": "LIFX",
     };
 };
 
@@ -257,14 +261,15 @@ LIFXBridge.prototype._lifx = function () {
 };
 
 function _c2h(outd, hex) {
-        var color = new _.Color(hex);
+    var color = new _.Color(hex);
 
-        outd.h = Math.round(color.h * 0xFFFF);
-        outd.s = Math.round(color.s * 0xFFFF);
-        outd.l = Math.round(color.l * 0xFFFF);
-        outd.brightness = Math.max(color.r, color.g, color.b) * 0xFFFF;
-    }
-    /*
-     *  API
-     */
+    outd.h = Math.round(color.h * 0xFFFF);
+    outd.s = Math.round(color.s * 0xFFFF);
+    outd.l = Math.round(color.l * 0xFFFF);
+    outd.brightness = Math.max(color.r, color.g, color.b) * 0xFFFF;
+}
+
+/*
+ *  API
+ */
 exports.Bridge = LIFXBridge;

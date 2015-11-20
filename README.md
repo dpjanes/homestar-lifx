@@ -7,6 +7,9 @@ See <a href="samples/">the samples</a> for details how to add to your project,
 particularly <code>model.js</code> for standalone
 and <code>iotdb.js</code> for HomeStar/IOTDB.
 
+Note that we can't distinguish (yet) between LIFX color lights
+and LIFX White lights.
+
 # Installation
 
 Install Home☆Star first. 

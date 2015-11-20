@@ -1,0 +1,52 @@
+{
+  "@context": {
+    "@base": "file:///lifx-light",
+    "@vocab": "file:///lifx-light#",
+    "iot": "https://iotdb.org/pub/iot#",
+    "schema": "http://schema.org/",
+    "iot-purpose": "https://iotdb.org/pub/iot-purpose#",
+    "iot-facet": "https://iotdb.org/pub/iot-facet#",
+    "iot:facet": {
+      "@id": "https://iotdb.org/pub/iot#facet",
+      "@type": "@id"
+    },
+    "iot:purpose": {
+      "@id": "https://iotdb.org/pub/iot#purpose",
+      "@type": "@id"
+    },
+    "iot:type": {
+      "@id": "https://iotdb.org/pub/iot#type",
+      "@type": "@id"
+    },
+    "iot:format": {
+      "@id": "https://iotdb.org/pub/iot#format",
+      "@type": "@id"
+    }
+  },
+  "@id": "",
+  "@type": "iot:Model",
+  "schema:name": "LIFX Light",
+  "schema:description": "LIFX colored light",
+  "iot:facet": [
+    "iot-facet:lighting"
+  ],
+  "iot:attribute": [
+    {
+      "@type": "iot:Attribute",
+      "@id": "#on",
+      "schema:name": "on",
+      "iot:purpose": "iot-purpose:on",
+      "iot:type": "iot:type.boolean",
+      "iot:write": true
+    },
+    {
+      "@type": "iot:Attribute",
+      "@id": "#color",
+      "schema:name": "color",
+      "iot:purpose": "iot-purpose:color",
+      "iot:type": "iot:type.string",
+      "iot:format": "iot:format.color",
+      "iot:write": true
+    }
+  ]
+}
