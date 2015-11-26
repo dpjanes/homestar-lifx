@@ -19,6 +19,12 @@ Then
 
     $ homestar install homestar-lifx
 
+# Development Note
+
+"products.json" is from:
+
+* https://github.com/LIFX/products/blob/master/products.json
+
 # Quick Start
 
 Set the light color to red

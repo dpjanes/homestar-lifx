@@ -26,11 +26,26 @@ var iotdb = require('iotdb');
 var _ = iotdb._;
 var bunyan = iotdb.bunyan;
 
-var lifx = require('lifx');
+var lifx = require('node-lifx');
 
 var logger = bunyan.createLogger({
     name: 'homestar-lifx',
     module: 'LIFXBridge',
+});
+
+/* e.g.
+    'White 800 (High Voltage)': {
+        pid: 11,
+        name: 'White 800 (High Voltage)',
+        features: {
+            color: false
+        }
+    },
+*/
+var pdd = {};
+var products = require('./products.json');
+products[0]["products"].map(function(pd) {
+    pdd[pd.name] = pd;
 });
 
 /**
@@ -80,9 +95,39 @@ LIFXBridge.prototype.discover = function () {
     }, "called");
 
     var lx = self._lifx();
-    lx.on('bulb', function (bulb) {
+    lx.on('light-new', function(bulb) {
+        self._discover_bulb(bulb);
+    });
+
+    var lightd = lx.lights('');
+    _.map(lightd, function(bulb, key) {
+        self._discover_bulb(bulb);
+    });
+};
+
+LIFXBridge.prototype._discover_bulb = function (bulb) {
+    var self = this;
+
+    bulb.getHardwareVersion(function(error, hardware) {
+        if (error) {
+            logger.error({
+                method: "_discover_bulb",
+                error: _.error.message(error),
+            }, "problem finding bulb");
+            return;
+        }
+
+        var pd = pdd[hardware.productName];
+        if (pd) {
+            hardware.color = pd.features.color;
+        }
+
+        hardware.uuid = bulb.id;
+
+        bulb.__hardware = hardware;
         self.discovered(new LIFXBridge(self.initd, bulb));
     });
+
 };
 
 /**
@@ -161,12 +206,6 @@ LIFXBridge.prototype.push = function (pushd, done) {
         putd.on = pushd.on;
     }
 
-    if (pushd.brightness !== undefined) {
-        var color = new _.Color();
-        color.set_rgb_1(pushd.brightness, pushd.brightness, pushd.brightness);
-        pushd.color = color.get_hex();
-    }
-
     if (_.is.String(pushd.color)) {
         _c2h(putd, pushd.color);
 
@@ -174,7 +213,13 @@ LIFXBridge.prototype.push = function (pushd, done) {
         self.pulled({
             on: true
         });
+    } else if (pushd.brightness !== undefined) {
+        putd.on = true;
+        putd.h = 0;
+        putd.s = 0;
+        putd.brightness = pushd.brightness;
     }
+
 
     logger.info({
         method: "push",
@@ -184,17 +229,26 @@ LIFXBridge.prototype.push = function (pushd, done) {
     var qitem = {
         id: self.light,
         run: function () {
-            var lx = self._lifx();
+            try {
+                if (putd.on !== undefined) {
+                    if (putd.on) {
+                        self.native.on();
+                    } else {
+                        self.native.off();
+                    }
+                }
 
-            if (putd.on) {
-                lx.lightsOn(self.native);
-            } else {
-                lx.lightsOff(self.native);
-            }
-
-            if (putd.h !== undefined) {
-                lx.lightsColour(putd.h, putd.s, putd.l, putd.brightness, 0x25, self.native);
-            }
+                if (putd.h !== undefined) {
+                    self.native.color(putd.h, putd.s, putd.brightness); // , 0x25, self.native);
+                }
+            } catch (x) {
+                logger.error({
+                    method: "push",
+                    pushd: pushd,
+                    putd: putd,
+                    exception: _.error.message(x),
+                }, "error sending commands to LIFX");
+            }       
 
             self.queue.finished(qitem);
         },
@@ -226,10 +280,12 @@ LIFXBridge.prototype.meta = function () {
         return;
     }
 
+    var hardware = self.native.__hardware;
     return {
-        "iot:thing-id": _.id.thing_urn.unique("LIFX", self.native.uuid),
-        "schema:name": self.native.name || "LIFX",
-        "schema:manufacturer": "LIFX",
+        "iot:thing-id": _.id.thing_urn.unique("LIFX", hardware.uuid),
+        "iot:vendor.color": hardware.color ? true : false,
+        "schema:name": hardware.productName || "LIFX",
+        "schema:manufacturer": hardware.vendorName || "LIFX",
     };
 };
 
@@ -254,7 +310,8 @@ LIFXBridge.prototype._lifx = function () {
     var self = this;
 
     if (!__lifx) {
-        __lifx = lifx.init();
+        __lifx = new lifx.Client();
+        __lifx.init();
     }
 
     return __lifx;
@@ -263,10 +320,9 @@ LIFXBridge.prototype._lifx = function () {
 function _c2h(outd, hex) {
     var color = new _.Color(hex);
 
-    outd.h = Math.round(color.h * 0xFFFF);
-    outd.s = Math.round(color.s * 0xFFFF);
-    outd.l = Math.round(color.l * 0xFFFF);
-    outd.brightness = Math.max(color.r, color.g, color.b) * 0xFFFF;
+    outd.h = Math.round(color.h * 360);
+    outd.s = Math.round(color.s * 100);
+    outd.brightness = Math.max(color.r, color.g, color.b) * 100;
 }
 
 /*

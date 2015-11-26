@@ -21,6 +21,11 @@
     "iot:format": {
       "@id": "https://iotdb.org/pub/iot#format",
       "@type": "@id"
+    },
+    "iot-unit": "https://iotdb.org/pub/iot-unit#",
+    "iot:unit": {
+      "@id": "https://iotdb.org/pub/iot#unit",
+      "@type": "@id"
     }
   },
   "@id": "",
@@ -46,6 +51,18 @@
       "iot:purpose": "iot-purpose:color",
       "iot:type": "iot:type.string",
       "iot:format": "iot:format.color",
+      "iot:write": true
+    },
+    {
+      "@type": "iot:Attribute",
+      "@id": "#brightness",
+      "schema:name": "brightness",
+      "iot:purpose": "iot-purpose:brightness",
+      "iot:type": "iot:type.integer",
+      "iot:unit": "iot-unit:math.fraction.percent",
+      "iot:minimum": 0,
+      "iot:maximum": 100,
+      "iot:read": true,
       "iot:write": true
     }
   ]

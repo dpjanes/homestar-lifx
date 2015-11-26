@@ -13,4 +13,11 @@ ATTRIBUTE color WITH
     iot:type = iot:type.string,
     iot:format = iot:format.color,
     iot:write = true
+ATTRIBUTE brightness WITH
+    schema:name = "brightness",
+    iot:purpose = iot-purpose:brightness,
+    iot:type = iot:type.integer,
+    iot:unit = iot-unit:math.fraction.percent,
+    iot:minimum = 0,
+    iot:maximum = 100
 ;

@@ -10,5 +10,5 @@ var iotdb = require("iotdb");
 
 exports.binding = {
     bridge: require('../LIFXBridge').Bridge,
-    model: require('./LIFXLight.json'),
+    model: require('./LifxLight.json'),
 };
