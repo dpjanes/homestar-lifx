@@ -9,7 +9,7 @@
 var iotdb = require('iotdb');
 var iot = iotdb.iot();
 
-var things = iot.connect('LIFX');
+var things = iot.connect('LIFXWhite').connect('LIFXLight');
 
 var on = false;
 var timer = setInterval(function () {

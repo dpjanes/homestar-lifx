@@ -1,0 +1,17 @@
+CREATE MODEL LifxWhite WITH
+    schema:name = "LIFX White",
+    schema:description = "LIFX White light",
+    iot:facet = iot-facet:lighting
+ATTRIBUTE on WITH
+    schema:name = "on",
+    iot:purpose = iot-purpose:on,
+    iot:type = iot:type.boolean,
+    iot:write = true
+ATTRIBUTE brightness WITH
+    schema:name = "brightness",
+    iot:purpose = iot-purpose:brightness,
+    iot:type = iot:type.integer,
+    iot:unit = iot-unit:math.fraction.percent,
+    iot:minimum = 0,
+    iot:maximum = 100
+;

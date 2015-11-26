@@ -1,0 +1,56 @@
+{
+  "@context": {
+    "@base": "file:///lifx-white",
+    "@vocab": "file:///lifx-white#",
+    "iot": "https://iotdb.org/pub/iot#",
+    "schema": "http://schema.org/",
+    "iot-purpose": "https://iotdb.org/pub/iot-purpose#",
+    "iot-facet": "https://iotdb.org/pub/iot-facet#",
+    "iot:facet": {
+      "@id": "https://iotdb.org/pub/iot#facet",
+      "@type": "@id"
+    },
+    "iot:purpose": {
+      "@id": "https://iotdb.org/pub/iot#purpose",
+      "@type": "@id"
+    },
+    "iot:type": {
+      "@id": "https://iotdb.org/pub/iot#type",
+      "@type": "@id"
+    },
+    "iot-unit": "https://iotdb.org/pub/iot-unit#",
+    "iot:unit": {
+      "@id": "https://iotdb.org/pub/iot#unit",
+      "@type": "@id"
+    }
+  },
+  "@id": "",
+  "@type": "iot:Model",
+  "schema:name": "LIFX White",
+  "schema:description": "LIFX White light",
+  "iot:facet": [
+    "iot-facet:lighting"
+  ],
+  "iot:attribute": [
+    {
+      "@type": "iot:Attribute",
+      "@id": "#on",
+      "schema:name": "on",
+      "iot:purpose": "iot-purpose:on",
+      "iot:type": "iot:type.boolean",
+      "iot:write": true
+    },
+    {
+      "@type": "iot:Attribute",
+      "@id": "#brightness",
+      "schema:name": "brightness",
+      "iot:purpose": "iot-purpose:brightness",
+      "iot:type": "iot:type.integer",
+      "iot:unit": "iot-unit:math.fraction.percent",
+      "iot:minimum": 0,
+      "iot:maximum": 100,
+      "iot:read": true,
+      "iot:write": true
+    }
+  ]
+}

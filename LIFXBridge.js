@@ -203,21 +203,21 @@ LIFXBridge.prototype.push = function (pushd, done) {
 
     var putd = {};
     if (pushd.on !== undefined) {
-        putd.on = pushd.on;
+        if ((pushd.brightness === undefined) && (pushd.color === undefined)) {
+            putd.brightness = pushd.on ? 100 : 0;
+        }
     }
 
     if (_.is.String(pushd.color)) {
         _c2h(putd, pushd.color);
-
-        putd.on = true;
-        self.pulled({
-            on: true
-        });
     } else if (pushd.brightness !== undefined) {
-        putd.on = true;
         putd.h = 0;
         putd.s = 0;
         putd.brightness = pushd.brightness;
+    }
+
+    if (putd.brightness !== undefined) {
+        putd.on = putd.brightness > 0 ? true : false;
     }
 
 
@@ -239,7 +239,9 @@ LIFXBridge.prototype.push = function (pushd, done) {
                 }
 
                 if (putd.h !== undefined) {
-                    self.native.color(putd.h, putd.s, putd.brightness); // , 0x25, self.native);
+                    self.native.color(putd.h, putd.s, putd.brightness); 
+                } else if (putd.brightness !== undefined) {
+                    self.native.color(0, 0, putd.brightness);
                 }
             } catch (x) {
                 logger.error({
