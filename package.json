@@ -5,14 +5,14 @@
     }, 
     "dependencies": {
         "iotdb": ">=0.10.0", 
-        "lifx": "~0.3.1"
+        "node-lifx": "~0.3.0"
     }, 
     "description": "HomeStar / IOTDB Bridge for LIFX", 
     "devDependencies": {
         "grunt": "~0.4.5", 
         "grunt-contrib-jshint": "~0.11.3", 
         "grunt-contrib-nodeunit": "~0.4.1", 
-        "grunt-contrib-uglify": "~0.10.1", 
+        "grunt-contrib-uglify": "~0.11.0", 
         "grunt-contrib-watch": "~0.6.1", 
         "grunt-jsbeautifier": "~0.2.10", 
         "jshint-stylish": "~2.1.0", 
