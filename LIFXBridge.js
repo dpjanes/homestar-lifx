@@ -95,6 +95,13 @@ LIFXBridge.prototype.discover = function () {
     }, "called");
 
     var lx = self._lifx();
+    lx.on('error', function(error) {
+        logger.error({
+            error: _.error.message(error),
+            cause: "likely in the LIFX module",
+            full: error,
+        }, "LIFX error");
+    });
     lx.on('light-new', function(bulb) {
         self._discover_bulb(bulb);
     });
@@ -269,6 +276,8 @@ LIFXBridge.prototype.pull = function () {
     if (!self.native) {
         return;
     }
+
+    /* XXX - it would be nice to pull values */
 };
 
 /* --- state --- */
