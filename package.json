@@ -4,8 +4,8 @@
         "url": "https://github.com/dpjanes/homestar-lifx/issues"
     }, 
     "dependencies": {
-        "iotdb": ">=0.10.0", 
-        "node-lifx": "~0.3.0"
+        "iotdb": ">=0.11.0", 
+        "node-lifx": "~0.4.0"
     }, 
     "description": "HomeStar / IOTDB Bridge for LIFX", 
     "devDependencies": {
@@ -16,7 +16,7 @@
         "grunt-contrib-watch": "~0.6.1", 
         "grunt-jsbeautifier": "~0.2.10", 
         "jshint-stylish": "~2.1.0", 
-        "load-grunt-tasks": "~3.3.0", 
+        "load-grunt-tasks": "~3.4.0", 
         "request": "~2.67.0"
     }, 
     "homepage": "https://homestar.io", 
@@ -32,5 +32,5 @@
     "scripts": {
         "test": "grunt"
     }, 
-    "version": "0.1.11"
+    "version": "0.1.12"
 }
