@@ -10,12 +10,9 @@ var iotdb = require('iotdb');
 var iot = iotdb.iot();
 
 var things = iot.connect('LIFXWhite').connect('LIFXLight');
-things.on("thing", function(thing) {
-    console.log("+", "new thing", thing.thing_id());
-});
-things.on("istate", function(thing) {
-    console.log("+", "state", thing.state("istate"));
-});
-things.on("meta", function(thing) {
-    console.log("+", "state", thing.state("meta"));
-});
+
+var on = false;
+var timer = setInterval(function () {
+    things.set(":on", on);
+    on = !on;
+}, 2500);

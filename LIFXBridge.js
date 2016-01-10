@@ -277,7 +277,41 @@ LIFXBridge.prototype.pull = function () {
         return;
     }
 
-    /* XXX - it would be nice to pull values */
+    self.native.getState(function(error, stated) {
+        if (!stated) {
+            return;
+        }
+
+        var updated = {};
+
+        if (stated.power !== undefined) {
+            var on = stated.power ? true : false;
+            if (on !== self.stated.power) {
+                self.stated.on = on;
+                updated.on = on;
+            }
+        }
+
+        if (stated.color !== undefined) {
+            var color = new _.color.Color();
+            color.set_hsb(stated.color.brightness, stated.color.saturation, stated.color.brightness);
+
+            var hex = color.get_hex();
+            if (hex !== self.stated.color) {
+                self.stated.color = hex;
+                updated.color = hex;
+            }
+
+            if (stated.color.brightness !== self.stated.brightness) {
+                self.stated.brightness = stated.color.brightness;
+                updated.brightness = stated.color.brightness;
+            }
+        };
+
+        if (!_.is.Empty(updated)) {
+            self.pulled(updated);
+        }
+    })
 };
 
 /* --- state --- */
@@ -329,7 +363,7 @@ LIFXBridge.prototype._lifx = function () {
 };
 
 function _c2h(outd, hex) {
-    var color = new _.Color(hex);
+    var color = new _.color.Color(hex);
 
     outd.h = Math.round(color.h * 360);
     outd.s = Math.round(color.s * 100);

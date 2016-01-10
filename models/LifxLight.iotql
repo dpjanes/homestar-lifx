@@ -7,14 +7,18 @@ ATTRIBUTE on WITH
     iot:purpose = iot-purpose:on,
     iot:type = iot:type.boolean,
     iot:actuator = true,
-    iot:write = true
+    iot:sensor = true,
+    iot:write = true,
+    iot:read = true
 ATTRIBUTE color WITH
     schema:name = "color",
     iot:purpose = iot-purpose:color,
     iot:type = iot:type.string,
     iot:format = iot:format.color,
     iot:actuator = true,
-    iot:write = true
+    iot:sensor = true,
+    iot:write = true,
+    iot:read = true
 ATTRIBUTE brightness WITH
     schema:name = "brightness",
     iot:purpose = iot-purpose:brightness,
@@ -23,5 +27,7 @@ ATTRIBUTE brightness WITH
     iot:minimum = 0,
     iot:maximum = 100,
     iot:actuator = true,
-    iot:write = true
+    iot:sensor = true,
+    iot:write = true,
+    iot:read = true
 ;

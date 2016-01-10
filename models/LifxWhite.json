@@ -39,9 +39,9 @@
       "iot:purpose": "iot-purpose:on",
       "iot:type": "iot:type.boolean",
       "iot:actuator": true,
+      "iot:sensor": true,
       "iot:write": true,
-      "iot:read": false,
-      "iot:sensor": false
+      "iot:read": true
     },
     {
       "@type": "iot:Attribute",
@@ -53,9 +53,9 @@
       "iot:minimum": 0,
       "iot:maximum": 100,
       "iot:actuator": true,
+      "iot:sensor": true,
       "iot:write": true,
-      "iot:read": false,
-      "iot:sensor": false
+      "iot:read": true
     }
   ]
 }
