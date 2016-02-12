@@ -33,7 +33,8 @@
   "schema:name": "LIFX Light",
   "schema:description": "LIFX colored light",
   "iot:facet": [
-    "iot-facet:lighting"
+    "iot-facet:lighting",
+    "iot-facet:lighting.light"
   ],
   "iot:attribute": [
     {

@@ -29,7 +29,8 @@
   "schema:name": "LIFX White",
   "schema:description": "LIFX White light",
   "iot:facet": [
-    "iot-facet:lighting"
+    "iot-facet:lighting",
+    "iot-facet:lighting.light"
   ],
   "iot:attribute": [
     {
