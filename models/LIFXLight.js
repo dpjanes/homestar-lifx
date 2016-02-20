@@ -10,7 +10,7 @@ var iotdb = require("iotdb");
 
 exports.binding = {
     bridge: require('../LIFXBridge').Bridge,
-    model: require('./LifxLight.json'),
+    model: require('./lifx-light.json'),
     matchd: {
         'iot:vendor.color': true,
     },
