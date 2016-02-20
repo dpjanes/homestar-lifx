@@ -1,7 +1,8 @@
 CREATE MODEL LifxLight WITH
     schema:name = "LIFX Light",
     schema:description = "LIFX colored light",
-    iot:facet = iot-facet:lighting.light
+    iot:facet = iot-facet:lighting.light,
+    iot:model = "https://raw.githubusercontent.com/dpjanes/homestar-lifx/master/models/lifx-light.json"
 ATTRIBUTE on WITH
     schema:name = "on",
     iot:purpose = iot-purpose:on,

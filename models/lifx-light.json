@@ -36,6 +36,7 @@
     "iot-facet:lighting",
     "iot-facet:lighting.light"
   ],
+  "iot:model": "https://raw.githubusercontent.com/dpjanes/homestar-lifx/master/models/lifx-light.json",
   "iot:attribute": [
     {
       "@type": "iot:Attribute",
