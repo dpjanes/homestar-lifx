@@ -249,6 +249,8 @@ LIFXBridge.prototype.push = function (pushd, done) {
                 } else if (putd.brightness !== undefined) {
                     self.native.color(0, 0, putd.brightness);
                 }
+
+                self.pulled(putd);
             } catch (x) {
                 logger.error({
                     method: "push",

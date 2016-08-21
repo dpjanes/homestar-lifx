@@ -4,10 +4,10 @@
 
 "use strict";
 
-var iotdb = require('iotdb');
-var LIFXBridge = require('../LIFXBridge').Bridge;
+const iotdb = require('iotdb');
+const LIFXBridge = require('../LIFXBridge').Bridge;
 
-var bridge_exemplar = new LIFXBridge();
+const bridge_exemplar = new LIFXBridge();
 bridge_exemplar.discovered = function (bridge) {
     console.log("+ got one\n ", bridge.meta());
     bridge.pulled = function (state) {

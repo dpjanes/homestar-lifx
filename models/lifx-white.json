@@ -3,13 +3,7 @@
     "@base": "file:///lifx-white",
     "@vocab": "file:///lifx-white#",
     "iot": "https://iotdb.org/pub/iot#",
-    "schema": "http://schema.org/",
     "iot-purpose": "https://iotdb.org/pub/iot-purpose#",
-    "iot-facet": "https://iotdb.org/pub/iot-facet#",
-    "iot:facet": {
-      "@id": "https://iotdb.org/pub/iot#facet",
-      "@type": "@id"
-    },
     "iot:purpose": {
       "@id": "https://iotdb.org/pub/iot#purpose",
       "@type": "@id"
@@ -18,46 +12,50 @@
       "@id": "https://iotdb.org/pub/iot#type",
       "@type": "@id"
     },
+    "schema": "http://schema.org/",
     "iot-unit": "https://iotdb.org/pub/iot-unit#",
     "iot:unit": {
       "@id": "https://iotdb.org/pub/iot#unit",
+      "@type": "@id"
+    },
+    "iot-facet": "https://iotdb.org/pub/iot-facet#",
+    "iot:facet": {
+      "@id": "https://iotdb.org/pub/iot#facet",
       "@type": "@id"
     }
   },
   "@id": "",
   "@type": "iot:Model",
-  "schema:name": "LIFX White",
-  "schema:description": "LIFX White light",
-  "iot:facet": [
-    "iot-facet:lighting",
-    "iot-facet:lighting.light"
-  ],
-  "iot:model": "https://raw.githubusercontent.com/dpjanes/homestar-lifx/master/models/lifx-white.json",
   "iot:attribute": [
     {
-      "@type": "iot:Attribute",
       "@id": "#on",
-      "schema:name": "on",
+      "@type": "iot:Attribute",
+      "iot:actuator": false,
       "iot:purpose": "iot-purpose:on",
-      "iot:type": "iot:type.boolean",
-      "iot:actuator": true,
+      "iot:read": true,
       "iot:sensor": true,
-      "iot:write": true,
-      "iot:read": true
+      "iot:type": "iot:type.boolean",
+      "iot:write": false,
+      "schema:name": "on"
     },
     {
-      "@type": "iot:Attribute",
       "@id": "#brightness",
-      "schema:name": "brightness",
+      "@type": "iot:Attribute",
+      "iot:actuator": false,
+      "iot:maximum": 100,
+      "iot:minimum": 0,
       "iot:purpose": "iot-purpose:brightness",
+      "iot:read": true,
+      "iot:sensor": true,
       "iot:type": "iot:type.integer",
       "iot:unit": "iot-unit:math.fraction.percent",
-      "iot:minimum": 0,
-      "iot:maximum": 100,
-      "iot:actuator": true,
-      "iot:sensor": true,
-      "iot:write": true,
-      "iot:read": true
+      "iot:write": false,
+      "schema:name": "brightness"
     }
-  ]
+  ],
+  "iot:facet": "iot-facet:lighting.light",
+  "iot:model": "https://raw.githubusercontent.com/dpjanes/homestar-lifx/master/models/lifx-white.json",
+  "iot:model-id": "lifx-white",
+  "schema:description": "LIFX White light",
+  "schema:name": "LIFX White"
 }

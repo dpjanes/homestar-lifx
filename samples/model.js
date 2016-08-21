@@ -4,12 +4,12 @@
 
 "use strict";
 
-var iotdb = require("iotdb");
-var _ = iotdb._;
+const iotdb = require("iotdb");
+const _ = iotdb._;
 
-var ModelBinding = require('../models/LIFX');
+const ModelBinding = require('../models/LIFX');
 
-var wrapper = _.bridge_wrapper(ModelBinding.binding);
+const wrapper = _.bridge_wrapper(ModelBinding.binding);
 wrapper.on('thing', function (model) {
     model.on("state", function (thing) {
         console.log("+ state\n ", model.thing_id(), model.state("istate"));

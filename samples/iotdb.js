@@ -6,10 +6,10 @@
 
 "use strict";
 
-var iotdb = require('iotdb');
-var iot = iotdb.iot();
+const iotdb = require('iotdb');
+iotdb.use("homestar-lifx");
 
-var things = iot.connect('LIFXWhite').connect('LIFXLight');
+const things = iotdb.connect('LIFXWhite').connect('LIFXLight');
 things.on("thing", function(thing) {
     console.log("+", "new thing", thing.thing_id());
 });

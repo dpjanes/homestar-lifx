@@ -6,13 +6,13 @@
 
 "use strict";
 
-var iotdb = require('iotdb');
-var iot = iotdb.iot();
+const iotdb = require('iotdb');
+iotdb.use("homestar-lifx");
 
-var things = iot.connect('LIFXWhite').connect('LIFXLight');
+const things = iotdb.connect('LIFXWhite').connect('LIFXLight');
 
-var on = false;
-var timer = setInterval(function () {
+let on = false;
+const timer = setInterval(function () {
     things.set(":on", on);
     on = !on;
 }, 2500);
