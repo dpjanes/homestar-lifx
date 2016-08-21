@@ -1,5 +1,5 @@
 # homestar-lifx
-HomeStar / IOTDB Controller for LIFX Light
+IOTDB Bridge for LIFX Lights
 
 <img src="https://raw.githubusercontent.com/dpjanes/iotdb-homestar/master/docs/HomeStar.png" align="right" />
 
@@ -10,14 +10,20 @@ and <code>iotdb.js</code> for HomeStar/IOTDB.
 Note that we can't distinguish (yet) between LIFX color lights
 and LIFX White lights.
 
-# Installation
+# Quick Start
 
-Install Home☆Star first. 
-See: https://github.com/dpjanes/iotdb-homestar#installation
 
-Then
+	$ npm install -g homestar ## with 'sudo' if error
+	$ homestar setup
+	$ homestar install homestar-lifx ## or npm install
 
-    $ homestar install homestar-lifx
+Set the lights to red
+
+	const iotdb = require('iotdb')
+	iotdb.use("homestar-lifx")
+
+	const things = iotdb.connect("LIFXLight")
+	things.set(":color", "#FF0000")
 
 # Development Note
 
@@ -25,39 +31,34 @@ Then
 
 * https://github.com/LIFX/products/blob/master/products.json
 
-# Quick Start
+# Models
+## LIFXLight
 
-Set the light color to red
-
-	$ npm install -g homestar ## with 'sudo' if error
-	$ homestar setup
-	$ homestar install homestar-lifx
-	$ node
-	>>> iotdb = require('iotdb')
-	>>> iot = iotdb.iot()
-	>>> things = iot.connect("LIFXLight")
-	>>> things.set(":color", "#FF0000")
-
-# LIFXLight
-
-Control LIFX Light
-
-Functionality:
-
-* discover Light hubs and individual lights
-* turn lights on and off
-* set light color
-* get same
-
-## Attributes
+LIFX Color Light
 
 * <code>on</code>: true or false.  <code>iot-attribute:on</code>
 * <code>color</code>: a hex color ("#FF0000").  <code>iot-attribute:color</code>
+* <code>brightness</code>: from 0 to 100
 
 e.g.
 
     {
         "on": true,
-        "color": "#FF0000"
+        "color": "#FF0000",
+        "brightness": 100
+    }
+
+## LIFXWhite
+
+Control LIFX White Light
+
+* <code>on</code>: true or false.  <code>iot-attribute:on</code>
+* <code>brightness</code>: from 0 to 100
+
+e.g.
+
+    {
+        "on": true,
+        "brightness": 100
     }
 
