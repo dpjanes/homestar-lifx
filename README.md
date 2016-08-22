@@ -1,5 +1,5 @@
 # homestar-lifx
-IOTDB Bridge for LIFX Lights
+[IOTDB](https://github.com/dpjanes/node-iotdb) Bridge for LIFX Lights
 
 <img src="https://raw.githubusercontent.com/dpjanes/iotdb-homestar/master/docs/HomeStar.png" align="right" />
 
