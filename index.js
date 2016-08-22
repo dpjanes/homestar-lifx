@@ -27,8 +27,3 @@ exports.bindings = [
     require('./models/LIFXLight').binding,
     require('./models/LIFXWhite').binding,
 ];
-
-exports.iotdb = require("iotdb");
-exports.wrap = function (name, initd) {
-    return exports.iotdb.make_wrap(name, exports.bindings, initd);
-};
