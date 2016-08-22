@@ -14,8 +14,8 @@ things.on("thing", function(thing) {
     console.log("+", "new thing", thing.thing_id());
 });
 things.on("istate", function(thing) {
-    console.log("+", "state", thing.state("istate"));
+    console.log("+", "istate", thing.state("istate"));
 });
 things.on("meta", function(thing) {
-    console.log("+", "state", thing.state("meta"));
+    console.log("+", "meta", thing.state("meta"));
 });
