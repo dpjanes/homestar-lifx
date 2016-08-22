@@ -3,6 +3,8 @@
 
 <img src="https://raw.githubusercontent.com/dpjanes/iotdb-homestar/master/docs/HomeStar.png" align="right" />
 
+# About
+
 See <a href="samples/">the samples</a> for details how to add to your project,
 particularly <code>model.js</code> for standalone
 and <code>iotdb.js</code> for HomeStar/IOTDB.
@@ -10,12 +12,15 @@ and <code>iotdb.js</code> for HomeStar/IOTDB.
 Note that we can't distinguish (yet) between LIFX color lights
 and LIFX White lights.
 
-# Quick Start
+# Installation
 
+* [Read this first](https://github.com/dpjanes/node-iotdb/blob/master/docs/install.md)
 
-	$ npm install -g homestar ## with 'sudo' if error
-	$ homestar setup
-	$ homestar install homestar-lifx ## or npm install
+Then:
+
+    $ npm install homestar-lifx
+
+# Use
 
 Set the lights to red
 
