@@ -9,8 +9,7 @@ See <a href="samples/">the samples</a> for details how to add to your project,
 particularly <code>model.js</code> for standalone
 and <code>iotdb.js</code> for HomeStar/IOTDB.
 
-Note that we can't distinguish (yet) between LIFX color lights
-and LIFX White lights.
+* [Read about Bridges](https://github.com/dpjanes/node-iotdb/blob/master/docs/bridges.md)
 
 # Installation
 
