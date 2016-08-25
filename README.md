@@ -40,8 +40,8 @@ Set the lights to red
 
 LIFX Color Light
 
-* <code>on</code>: true or false.  <code>iot-attribute:on</code>
-* <code>color</code>: a hex color ("#FF0000").  <code>iot-attribute:color</code>
+* <code>on</code>: true or false.  <code>iot-purpose:on</code>
+* <code>color</code>: a hex color ("#FF0000").  <code>iot-purpose:color</code>
 * <code>brightness</code>: from 0 to 100
 
 e.g.
@@ -56,7 +56,7 @@ e.g.
 
 Control LIFX White Light
 
-* <code>on</code>: true or false.  <code>iot-attribute:on</code>
+* <code>on</code>: true or false.  <code>iot-purpose:on</code>
 * <code>brightness</code>: from 0 to 100
 
 e.g.
