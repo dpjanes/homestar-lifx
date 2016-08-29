@@ -27,3 +27,5 @@ exports.bindings = [
     require('./models/LIFXLight').binding,
     require('./models/LIFXWhite').binding,
 ];
+
+exports.module_folder = __dirname;
