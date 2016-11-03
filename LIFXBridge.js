@@ -77,10 +77,6 @@ var LIFXBridge = function (initd, native) {
 
 LIFXBridge.prototype = new iotdb.Bridge();
 
-LIFXBridge.prototype.name = function () {
-    return "LIFXBridge";
-};
-
 /* --- lifecycle --- */
 
 /**
